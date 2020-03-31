@@ -1,0 +1,12 @@
+.statbox{
+    height: 500px;
+    overflow:scroll;
+    width:10%;
+    border:solid 3px pink;
+}
+
+.flexbox{
+display:flex;
+    justify-content:flex-end;
+
+}

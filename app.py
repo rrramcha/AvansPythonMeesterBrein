@@ -1,11 +1,10 @@
 from flask import Flask, render_template
 
-from Controllers.GameControllerClass import GameController
+from Controllers.MainController import GameController
 
 app = Flask(__name__)
 
 gameController = GameController()
-
 
 @app.route('/')
 def hello_world():
@@ -13,4 +12,5 @@ def hello_world():
 
 
 if __name__ == '__main__':
-    app.run()
+    app.run(debug=True)
+

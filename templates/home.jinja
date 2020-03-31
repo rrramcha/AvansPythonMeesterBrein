@@ -1,9 +1,25 @@
 <html>
+<head>
+<link rel="stylesheet" type="text/css" href="../static/mastermind.css">
+</head>
 <body>
+<div class="gameboard">
 
-{% if code%}
-    <h1>{{code}}</h1>
-{% endif %}
+</div>
+
+
+
+
+
+<div class="flexbox">
+<div class="statbox">
+{% for stat in stats  %}
+    Date played: {{ stat[0] }} <br>
+    Turns taken: {{ stat[1] }}<br>
+    <br>
+{% endfor %}
+</div>
+</div>
 
 
 </body>
