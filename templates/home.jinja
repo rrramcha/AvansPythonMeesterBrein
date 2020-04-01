@@ -4,7 +4,24 @@
 </head>
 <body>
 <div class="gameboard">
-
+    <div>
+        {% if game.code %}
+        <h1>Code : {{ game.code }} </h1>
+        {% endif %}
+    </div>
+    <div>
+        {% for guess in game.guesses %}
+            <h1>Guess : {{ guess }}</h1>
+        {% endfor %}
+    </div>
+    <form method="post" action="">
+        {{ form.hidden_tag() }}
+        <div>
+            {{ form.guess.label }}
+            {{ form.guess }}
+            {{ form.submit() }}
+        </div>
+    </form>
 </div>
 
 
@@ -12,13 +29,13 @@
 
 
 <div class="flexbox">
-<div class="statbox">
-{% for stat in stats  %}
-    Date played: {{ stat[0] }} <br>
-    Turns taken: {{ stat[1] }}<br>
-    <br>
-{% endfor %}
-</div>
+    <div class="statbox">
+    {% for stat in stats  %}
+        Date played: {{ stat[0] }} <br>
+        Turns taken: {{ stat[1] }}<br>
+        <br>
+    {% endfor %}
+    </div>
 </div>
 
 
