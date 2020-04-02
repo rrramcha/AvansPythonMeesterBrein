@@ -10,9 +10,11 @@
         {% endif %}
     </div>
     <div>
-        {% for result in game.guess_results %}
-            <h1>
-                {% for number in result  %}
+    {% for result in game.guesses %}
+        {{ reu }}
+        <h1>Guess: {{ game.guesses[loop.index-1] }}</h1>
+        <h1>Result:
+        {% for number in game.guess_results[loop.index-1] %}
                     {% if number == 1 %}
                         X
                     {% elif number == 2  %}
@@ -21,21 +23,26 @@
                         O
                     {% endif %}
                 {% endfor %}
-            </h1>
-        {% endfor %}
+    {% endfor %}
+        </h1>
     <br>
-        {% for guess in game.guesses %}
+        {#{% for guess in game.guesses %}
             <h1>Guess : {{ guess }}</h1>
-        {% endfor %}
+        {% endfor %}#}
     </div>
-    <form method="post" action="">
+    <form method="post" action="game">
         {{ form.hidden_tag() }}
         <div>
             {{ form.guess.label }}
-            {{ form.guess }}
+            {{ form.guess()}}
             {{ form.submit() }}
         </div>
     </form>
+    <ul>
+        {% for error in form.guess.errors%}
+            <li>{{ error }}</li>
+        {% endfor %}
+    </ul>
 </div>
 
 

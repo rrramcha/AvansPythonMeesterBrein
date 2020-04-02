@@ -9,6 +9,11 @@ mainController = MainController()
 
 
 @app.route('/', methods=['GET', 'POST'])
+def new_game():
+    return mainController.new_game()
+
+
+@app.route('/game', methods=['GET', 'POST'])
 def game():
     return mainController.handle_answer()
 

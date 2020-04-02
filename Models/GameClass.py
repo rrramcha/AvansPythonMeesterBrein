@@ -1,29 +1,33 @@
 import random
 import sys
 
+
 class Game:
 
     def __init__(self):
         code = []
-        self.guesses = [[]]
-        self.guess_results = [[]]
+        self.guesses = []
+        self.guess_results = []
         for i in range(4):
             random_num = random.randint(1, 9)
             while random_num in code:
                 random_num = random.randint(1, 9)
             code.append(random_num)
         self.code = code
+        self.game_won = False
 
     def validate_guess(self, guess):
+        print('hallo', file=sys.stderr)
         correct_guesses = []
-
-        for i in range(len(guess)):
-            if int(guess[i]) == self.code[i]:
-                correct_guesses.append(1)
-            elif int(guess[i]) in self.code:
-                correct_guesses.append(2)
-            else:
-                correct_guesses.append(3)
+        if guess is not None:
+            for i in range(len(guess)):
+                if int(guess[i]) == self.code[i]:
+                    correct_guesses.append(1)
+                elif int(guess[i]) in self.code:
+                    correct_guesses.append(2)
+                else:
+                    correct_guesses.append(3)
+            self.game_won = all(number is 1 for number in correct_guesses)
 
         random.shuffle(correct_guesses)
         self.add_guess_result(correct_guesses)
@@ -58,3 +62,11 @@ class Game:
 
     def add_guess(self, guess):
         self._guesses.append(guess)
+
+    @property
+    def game_won(self):
+        return self._game_won
+
+    @game_won.setter
+    def game_won(self, value):
+        self._game_won = value

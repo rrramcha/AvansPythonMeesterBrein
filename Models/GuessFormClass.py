@@ -4,5 +4,11 @@ from wtforms.validators import DataRequired, Length
 
 
 class GuessForm(FlaskForm):
-    guess = StringField('Guess', validators=[DataRequired(), Length(min=4, max=4, message='Voer getal in van 4')])
+    guess = StringField('Guess', validators=[DataRequired(), Length(min=6, max=6)])
     submit = SubmitField('Submit guess')
+
+    def makeform(self, codelength):
+        GuessForm.guess = StringField('Guess', validators=[DataRequired(), Length(min=codelength, max=codelength)])
+        GuessForm.submit = SubmitField('Submit guess')
+        print(codelength)
+
