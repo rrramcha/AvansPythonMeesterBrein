@@ -10,6 +10,20 @@
         {% endif %}
     </div>
     <div>
+        {% for result in game.guess_results %}
+            <h1>
+                {% for number in result  %}
+                    {% if number == 1 %}
+                        X
+                    {% elif number == 2  %}
+                        @
+                    {% else %}
+                        O
+                    {% endif %}
+                {% endfor %}
+            </h1>
+        {% endfor %}
+    <br>
         {% for guess in game.guesses %}
             <h1>Guess : {{ guess }}</h1>
         {% endfor %}

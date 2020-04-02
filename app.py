@@ -10,7 +10,7 @@ mainController = MainController()
 
 @app.route('/', methods=['GET', 'POST'])
 def game():
-    return mainController.initialize()
+    return mainController.handle_answer()
 
 
 if __name__ == '__main__':
