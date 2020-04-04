@@ -3,11 +3,31 @@
 
     </head>
     <body>
+    <table border="1">
     {% for stat in stats %}
+
     {% for pfrlp in stat %}
-    {{ pfrlp }}
+        {% if loop.index == loop.length %}
+            <tr>
+                <td>Games won:</td>
+            </tr>
+            <tr>
+                <td>{{ pfrlp }}</td>
+            </tr>
+        {% elif loop.index == 1 %}
+            <th> User</th>
+            <tr>
+                <td>{{ pfrlp }}</td>
+            </tr>
+        {% elif loop.index % 2 == 0 %}
+            <td>Date: </td>
+            <td>{{ pfrlp }}</td>
+        {% else %}
+            <td>Tries: </td>
+            <td>{{ pfrlp }}</td>
+        {% endif %}
     {% endfor %}
-        <br>
     {% endfor %}
+    </table>
     </body>
 </html>
