@@ -1,4 +1,4 @@
-from flask import Flask, render_template
+from flask import Flask, render_template, request
 
 from Controllers.MainControllerClass import MainController
 
@@ -15,8 +15,12 @@ def new_game():
 
 @app.route('/game', methods=['GET', 'POST'])
 def game():
+    numbers = request.forms[]
     return mainController.handle_answer()
 
+@app.route('/newgame', methods=['GET', 'POST'])
+def initgame():
+    return render_template('newgame.jinja')
 
 if __name__ == '__main__':
     app.run(debug=True)

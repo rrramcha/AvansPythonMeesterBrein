@@ -17,7 +17,6 @@ class Game:
         self.game_won = False
 
     def validate_guess(self, guess):
-        print('hallo', file=sys.stderr)
         correct_guesses = []
         if guess is not None:
             for i in range(len(guess)):

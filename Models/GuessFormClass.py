@@ -10,5 +10,4 @@ class GuessForm(FlaskForm):
     def makeform(self, codelength):
         GuessForm.guess = StringField('Guess', validators=[DataRequired(), Length(min=codelength, max=codelength)])
         GuessForm.submit = SubmitField('Submit guess')
-        print(codelength)
 
