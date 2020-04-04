@@ -3,24 +3,48 @@
 <link rel="stylesheet" type="text/css" href="../static/mastermind.css">
 </head>
 <body>
-<div class="gameboard">
-
-</div>
-
-
-
-
 
 <div class="flexbox">
-<div class="statbox">
-{% for stat in stats  %}
-    Date played: {{ stat[0] }} <br>
-    Turns taken: {{ stat[1] }}<br>
-    <br>
-{% endfor %}
-</div>
+    <div id="gameboard">
+        <div>
+            {% for result in game.guesses %}
+                {{ reu }}
+                <h1>Guess: {{ game.guesses[loop.index-1] }}</h1>
+                <h1>Result:
+                {% for number in game.guess_results[loop.index-1] %}
+                            {% if number == 1 %}
+                                X
+                            {% elif number == 2  %}
+                                @
+                            {% else %}
+                                O
+                            {% endif %}
+                        {% endfor %}
+            {% endfor %}
+                </h1>
+            <br>
+        </div>
+    </div>
+    <div class="guessbutton">
+        <form method="post" action="game" >
+            {{ form.hidden_tag() }}
+            <div>
+                {{ form.guess.label }}
+                {{ form.guess()}}
+                {{ form.submit() }}
+            </div>
+        </form>
+        <ul>
+            {% for error in form.guess.errors%}
+                <li>{{ error }}</li>
+            {% endfor %}
+        </ul>
+    </div>
 </div>
 
-
+<script>
+    var element = document.getElementById("gameboard");
+element.scrollTop = element.scrollHeight;
+</script>
 </body>
 </html>

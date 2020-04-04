@@ -6,7 +6,15 @@
 }
 
 .flexbox{
-display:flex;
-    justify-content:flex-end;
+    display:flex;
+    justify-content:space-around;
+}
 
+#gameboard{
+    max-height: 600px;
+    overflow: scroll;
+}
+
+.guessbutton{
+    padding: 100px;
 }

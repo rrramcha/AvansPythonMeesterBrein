@@ -1,0 +1,35 @@
+<html>
+    <head>
+
+    </head>
+
+    <body>
+        <form method="post" action="/newgame">
+        <div>
+            <h1> Kies het aantal cijfers: </h1>
+            <input type="radio" name="numbers" id="option4" value="4" required> 4 </input><br>
+            <input type="radio" name="numbers" id="option5" value="5"> 5 </input><br>
+            <input type="radio" name="numbers" id="option6" value="6"> 6 </input><br>
+            <input type="radio" name="numbers" id="option7" value="7"> 7 </input><br>
+            <input type="radio" name="numbers" id="option8" value="8"> 8 </input><br>
+        </div>
+        <div>
+            <h1> Kies het aantal posities: </h1>
+            <input type="radio" name="positions" id="option4" value="4" required> 4 </input><br>
+            <input type="radio" name="positions" id="option5" value="5"> 5 </input><br>
+            <input type="radio" name="positions" id="option6" value="6"> 6 </input><br>
+            <input type="radio" name="positions" id="option7" value="7"> 7 </input><br>
+            <input type="radio" name="positions" id="option8" value="8"> 8 </input><br>
+        </div>
+        <div>
+            <h1>Mag er met dubbele cijfers gespeeld worden?</h1>
+            <input type="checkbox" name="doublenumbers">
+        </div>
+        <div>
+            <label>Voer je koole gamernaam in bro</label>
+            <input type="text" name="username" required>
+        </div>
+        <input type="submit" value="Start spel">
+        </form>
+    </body>
+</html>
