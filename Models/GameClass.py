@@ -4,14 +4,16 @@ import sys
 
 class Game:
 
-    def __init__(self):
+    def __init__(self, positions, numbers, doublenumbers):
         code = []
         self.guesses = []
         self.guess_results = []
-        for i in range(4):
-            random_num = random.randint(1, 9)
-            while random_num in code:
-                random_num = random.randint(1, 9)
+        print(doublenumbers, file=sys.stderr)
+        for i in range(positions):
+            random_num = random.randint(1, numbers)
+            if not doublenumbers:
+                while random_num in code:
+                    random_num = random.randint(1, numbers)
             code.append(random_num)
         self.code = code
         self.game_won = False

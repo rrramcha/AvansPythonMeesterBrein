@@ -10,12 +10,12 @@ import sys
 class MainController:
 
     def __init__(self):
-        self.game = Game()
         # self.stats = self.read_game_stats()
+        print()
 
     def handle_answer(self):
         form = GuessForm()
-        form.makeform(4)
+        form.makeform(self.positions)
         if form.validate_on_submit():
             self.game.validate_guess(form.guess.data)
             if self.game.game_won:
@@ -54,10 +54,26 @@ class MainController:
     @game.setter
     def game(self, game):
         self._game = game
+    @property
+    def positions(self):
+        return self._positions
 
-    def new_game(self):
+    @positions.setter
+    def positions(self, value):
+        self._positions = value
+
+    def new_game(self, numbers, positions, doublenumbers):
+        numbers = int(numbers)
+        positions = int(positions)
+        self.positions = positions
+        if str(doublenumbers) == 'on' or positions > numbers:
+            doublenumbers = True
+        else:
+            doublenumbers = False
+
         form = GuessForm()
-        form.makeform(4)
-        self.game = Game()
+        form.makeform(positions)
+        print('positions is' + str(positions) + 'Numbers is ' + str(numbers), file=sys.stderr)
+        self.game = Game(positions, numbers, doublenumbers)
         return render_template('home.jinja', game=self.game, form=form)
 
