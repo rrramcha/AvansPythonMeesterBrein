@@ -20,11 +20,14 @@ class Game:
 
     def validate_guess(self, guess):
         correct_guesses = []
+        temp_code = self.code.copy()
         if guess is not None:
             for i in range(len(guess)):
-                if int(guess[i]) == self.code[i]:
+                if int(guess[i]) == temp_code[i]:
+                    temp_code[i] = None
                     correct_guesses.append(1)
-                elif int(guess[i]) in self.code:
+                elif int(guess[i]) in temp_code:
+                    temp_code[temp_code.index(int(guess[i]))] = None
                     correct_guesses.append(2)
                 else:
                     correct_guesses.append(3)

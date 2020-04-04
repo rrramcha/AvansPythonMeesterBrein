@@ -19,9 +19,8 @@ class MainController:
         if form.validate_on_submit():
             self.game.validate_guess(form.guess.data)
             if self.game.game_won:
-                self.handle_game_win('Rick')
+                self.handle_game_win(self.username)
                 return render_template('win.jinja')
-            #print(self.game.guess_results[0], file=sys.stderr)
             return render_template('home.jinja', game=self.game, form=form)
         return render_template('home.jinja', game=self.game, form=form)
 
@@ -30,7 +29,7 @@ class MainController:
         with file as f:
             date = str(datetime.datetime.now()).split()[0]
             if username not in f.read():
-                file.write(username + " ")
+                file.write("\n" + username + " ")
             file.write(date + " ")
             file.write(str(len(self.game.guesses)) + " ")
 
@@ -62,7 +61,8 @@ class MainController:
     def positions(self, value):
         self._positions = value
 
-    def new_game(self, numbers, positions, doublenumbers):
+    def new_game(self, numbers, positions, doublenumbers, username):
+        self.username = username
         numbers = int(numbers)
         positions = int(positions)
         self.positions = positions
@@ -73,7 +73,16 @@ class MainController:
 
         form = GuessForm()
         form.makeform(positions)
-        print('positions is' + str(positions) + 'Numbers is ' + str(numbers), file=sys.stderr)
         self.game = Game(positions, numbers, doublenumbers)
         return render_template('home.jinja', game=self.game, form=form)
 
+    def leaderboard(self):
+        file = open('users.txt', 'r')
+        user_array = [[]]
+        for line in file:
+            print(line, file=sys.stderr)
+            user_stats = line.split()
+            user_stats.append(int((len(user_stats)-1)/2))
+            user_array.append(user_stats)
+
+        return render_template('leaderboard.jinja', stats=user_array)
